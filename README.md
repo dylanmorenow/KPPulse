@@ -4,7 +4,7 @@
 
 Fleet intelligence for mining haul trucks. KPPulse turns raw fleet data into decisions about tire life, payload, and safe driving speed, and expresses every result in Rupiah.
 
-Built for the Astranauts hackathon, covering two KPP Mining cases in one full-stack platform.
+Built for the Astranauts Case Competition, covering two KPP Mining cases in one full-stack platform.
 
 <!-- ![KPPulse dashboard](docs/screenshots/dashboard.png) -->
 
@@ -150,4 +150,4 @@ Seeded demo accounts: admin `kpp` / `muatcerdas`, drivers `andi` / `andi123` (HD
 
 ## Team
 
-Built by team **IMOGA** (Elroy, [Dylan](https://github.com/dylanmorenow), Leon, Gerald, and Parsa) for the Astranauts Business Challenge, KPP Mining case.
+Built by team **IMOGA** (Elroy, [Dylan](https://github.com/dylanmorenow), Leon, Gerald, and Parsa) for the Astranauts Case Competition (KPP Mining case).
