@@ -1,146 +1,150 @@
-# MuatCerdas — Tire, Payload & Speed Intelligence Platform (KPP Mining)
+# KPPulse
 
-Aplikasi web **full-stack yang benar-benar berfungsi** yang mengubah data armada KPP menjadi keputusan biaya & operasi. Modul A/B/C/D + inti — memetakan dua case lomba Astranauts, satu lapisan penyatu, dan satu lapisan operasi/akses:
+Fleet intelligence for mining haul trucks. KPPulse turns raw fleet data into decisions about tire life, payload, and safe driving speed, and expresses every result in Rupiah.
 
-- **Modul A — Tire Life Intelligence (Case 1):** truk hauling jalan **Scania P410, Scania R580, Volvo FH16 6x4T, Scania 620 XT** di rute laterit CPP KM 33 → Jetty (±35 km). Prediksi sisa umur ban (regresi linear **terjelaskan**), atribusi penyebab keausan, rekomendasi tindakan, dan biaya.
-- **Modul B — Payload Optimization (Case 2):** dump truck in-pit **HD785** (dimuat PC2000/PC1250/PC850). Analitik payload vs target 91 t, deteksi over/underload, kaitan ke keausan, kepercayaan kalibrasi, dan panduan pemuatan hijau/kuning/merah.
-- **Modul C — Speed Optimization (TKPH):** menyatukan A & B. Menghitung **kecepatan aman maksimum** tiap truk hauling dari beban ban (standar **TKPH**), menyeimbangkannya dengan **target produksi harian**, lalu **jujur melaporkan** bila target hanya tercapai dengan melanggar batas ban — beserta opsi solusi terukur. Deterministik (TKPH + aljabar), **bukan AI**.
-- **Modul D — Peran & Operasi (akses + driver + peta):** login **dua peran** (admin/driver), **Driver Dashboard** ringkas per-unit (reuse A/B/C), dan prototipe **peta kondisi jalan** (konsep LIDAR) sebagai sumber `conditionScore` yang menyetir Modul A. Data simulasi — **bukan LIDAR live**.
-- **Inti:** import data nyata (CSV/XLSX), mesin finansial (biaya terhindarkan + ROI), dashboard & laporan (PDF/CSV).
+Built for the Astranauts hackathon, covering two KPP Mining cases in one full-stack platform.
 
-> **Bukan demo/mock, dan bukan Pareto.** Bekerja atas data yang di-import (CSV/XLSX) atau dataset contoh deterministik bawaan. Integrasi telematik/PLM/FMS **live** = pekerjaan masa depan (batas integrasi tersedia di arsitektur), **tidak dipalsukan**.
+<!-- ![KPPulse dashboard](docs/screenshots/dashboard.png) -->
 
-## Tagline
-> "KPP sudah punya datanya. MuatCerdas mengubahnya jadi keputusan: memprediksi & memperpanjang umur ban truk hauling, menjaga payload HD785 tepat di target, dan menetapkan kecepatan aman yang tetap mengejar produksi — semua diterjemahkan ke Rupiah."
+**Live demo:** [add link here](#) &nbsp;·&nbsp; **Demo login:** admin `kpp` / `muatcerdas`, driver `budi` / `budi123`
 
-## Mulai cepat
-```bash
-npm install            # workspaces: shared, server, client
-npm run db:setup       # prisma migrate + generate + seed dataset contoh (30 truk hauling + 12 HD785, + parameter TKPH)
-npm run dev            # server (http://localhost:3001) + client (http://localhost:5173)
-```
-Buka **http://localhost:5173**. Perintah lain:
-```bash
-npm run test           # uji lengkap lintas 3 workspace (mengunci model §12 & §C; peran & peta M10)
-npm run typecheck      # TypeScript strict, 3 workspace
-npm run build          # build produksi client + cek tipe server
-```
-Prasyarat: **Node ≥ 18**. Database: **SQLite** (tanpa setup berat). File `server/.env` minimal berisi `DATABASE_URL="file:./dev.db"` (UTF-8 tanpa BOM).
+## The problem
 
-## Deploy gratis (publik, untuk juri)
-Satu service melayani API + hasil build client (SPA) lewat `Dockerfile` (sudah disertakan). Paling mudah lewat **Render** (gratis, tanpa kartu kredit):
+Mining contractors already collect data on tires, payloads, and haul routes, but that data rarely drives daily decisions. Tires wear out early, dump trucks leave the pit overloaded or underloaded, and drivers speed up to hit production targets at the cost of tire damage. Each issue is expensive on its own, and they make each other worse.
 
-1. Buka **https://render.com**, daftar/masuk dengan akun **GitHub**.
-2. **New → Blueprint**, pilih repo ini. Render membaca `render.yaml`, membangun `Dockerfile`, lalu memberi URL publik (mis. `https://kppulse.onrender.com`).
-3. Tunggu build selesai (~3–5 menit). Buka URL-nya. Login: admin `kpp` / `muatcerdas`, atau driver `andi` / `andi123` (HD785) dan `budi` / `budi123` (truk hauling).
+## What it does
 
-Catatan jujur: paket gratis memakai **SQLite ephemeral** — data di-seed ulang tiap instance start, dan instance "tidur" setelah ~15 menit menganggur (akses pertama berikutnya butuh ~1 menit untuk bangun). Cukup untuk demo; perubahan seperti "tandai selesai"/kondisi zona ikut tereset saat restart.
+| Module | Focus |
+| --- | --- |
+| **A. Tire Life Intelligence** | Predicts remaining tire life for haul trucks (Scania P410, R580, 620 XT and Volvo FH16) on the 35 km laterite route from CPP KM 33 to the jetty. Explains what is driving wear and recommends actions with estimated savings. |
+| **B. Payload Optimization** | Tracks HD785 dump truck payloads against the 91 t target, flags overloading and underloading, monitors scale calibration drift, and gives loader operators green, yellow, or red guidance. |
+| **C. Speed Optimization** | Connects A and B. Calculates each truck's maximum safe speed using the industry TKPH standard, compares it with the speed needed to hit the daily production target, and lays out concrete options when the two conflict. |
+| **D. Roles and Road Map** | Admin and driver roles, a driver dashboard readable at a glance, and a road condition map prototype that feeds directly into tire wear predictions. |
 
-Alternatif (juga gratis): host mana pun yang mendukung `Dockerfile` (Fly.io, Railway, dll.) — container mendengarkan `PORT` dari environment.
+The core platform adds CSV/XLSX data import, a financial engine (avoided cost, payback period, ROI), and downloadable PDF/CSV reports.
 
-## Arsitektur
-TypeScript full-stack, npm workspaces:
-- **`shared/`** — otak domain **murni** (tipe, skema Zod, rumus PRD §12 + Modul C §C, format Rupiah) + Vitest. Dipakai server **dan** client → satu sumber perhitungan (SR-V5).
-- **`server/`** — Fastify + Prisma + SQLite. Endpoint import (papaparse/SheetJS), analitik tire/payload, **speed/TKPH**, finansial, data. Logika murni dipisah dari Prisma agar mudah diuji tanpa DB.
-- **`client/`** — React + Vite + Tailwind + Recharts + TanStack Query. 10 layar admin (sidebar) + **Driver Dashboard** terpisah (Modul D), UI Bahasa Indonesia, format angka Indonesia terpusat.
+### Design decisions
+
+- **Explainable over black box.** Tire life uses linear regression with visible coefficients and confidence intervals. Speed limits come from deterministic TKPH calculations. Every number on screen can be traced back to its formula.
+- **One source of truth.** All domain logic lives in a shared package used by both the server and the client, so the dashboard and the API can never disagree.
+- **Conservative by default.** Payload levers in the ROI model start at zero, so projected savings are never inflated before real data is loaded.
+- **Ready for real data.** Swap the sample dataset for real CSV/XLSX exports from the import screen, with no code changes.
+
+## Screens
+
+| Screen | What you see |
+| --- | --- |
+| Dashboard | Combined KPIs: avoided cost, savings, payback, ROI, plus report export |
+| Tire Prediction | Remaining life per unit with confidence intervals, wear attribution, model coefficients |
+| Tire Recommendations | Prioritized actions (rotate, replace, adjust pressure, avoid segment) with savings |
+| Payload Analytics | Distribution against the 91 t target, trends by unit and operator, overload to wear link |
+| Loading Guidance | Pass and band policy generator with a bucket simulator |
+| Calibration Health | Scale drift status for each HD785 |
+| Speed Optimization | Safe speed per unit, required speed for the target, SAFE or CONFLICT status with options |
+| Finance and ROI | Editable assumptions with live results and fleet scenarios |
+| Data Import | Upload per entity with row-level validation |
+| Road Map | Route segments colored by condition, adjustable condition scores |
+| Driver Dashboard | Max safe speed, load, unit health, and production target for one truck |
+
+The app UI is in Bahasa Indonesia.
+
+## Tech stack
+
+TypeScript end to end, organized as npm workspaces.
+
+- **Client:** React, Vite, Tailwind CSS, Recharts, TanStack Query
+- **Server:** Fastify, Prisma, SQLite
+- **Shared:** Zod schemas, pure domain logic, Vitest
+- **Deployment:** Docker, Render
 
 ```
 muatcerdas/
 ├─ shared/src/
-│  ├─ tire/        predict · attribution · finance        (§12.1/§12.2/§12.7)
-│  ├─ payload/     analytics · wear · guidance · calibration · policy  (§12.3–§12.6)
-│  ├─ finance/     roi                                     (§12.8–§12.9)
-│  └─ speed/       tkph · productionSpeed · decision       (§C.1–§C.6)   ← Modul C
-├─ server/src/     routes/ · services/ · seed.ts · prisma/schema.prisma
-└─ client/src/     pages/ · api/ · components/
+│  ├─ tire/       prediction, wear attribution, tire finance
+│  ├─ payload/    analytics, wear link, guidance, calibration, policy
+│  ├─ finance/    ROI
+│  └─ speed/      TKPH, production speed, decision logic
+├─ server/src/    routes, services, seed, Prisma schema
+└─ client/src/    pages, API hooks, components
 ```
 
-## Layar
-| Layar | Modul | Isi |
-|---|---|---|
-| Dashboard | Inti | KPI gabungan: biaya terhindarkan, penghematan, payback, ROI + ringkasan modul + **Unduh Laporan PDF/CSV** |
-| Tire — Daftar & Prediksi | A | Tabel unit: sisa umur + interval keyakinan + status; klik → detail (riwayat ban, atribusi penyebab, koefisien model) |
-| Tire — Rekomendasi | A | Tindakan prioritas (rotasi/ganti/tekanan/segmen) + estimasi penghematan |
-| Payload — Analitik | B | Distribusi vs 91 t, %under/ok/over, tren, filter unit/operator, kaitan overload→keausan |
-| Loading Guidance | B | Generator policy (pass/band) + simulasi bucket → indikator hijau/kuning/merah |
-| Calibration Health | B | Status drift PLM HD785 (offset/usia kalibrasi) |
-| **Speed Optimization** | **C** | **Vmax aman per unit (TKPH) · target produksi → V_required · banner AMAN/KONFLIK + opsi terukur · panduan driver · panel HD785 ringkas. Parameter TKPH/produksi editable (tersimpan DB)** |
-| Finansial & ROI | Inti | Asumsi editable (tersimpan DB) → hasil live + skenario armada |
-| Data / Import | Inti | Unggah CSV/XLSX per entity + validasi per-baris + inventaris |
-| **Peta Jalan** | **D** | **Prototipe peta kondisi jalan KM33→Jetty (SVG): segmen berwarna per kondisi + truk pemeta (lead/last). Admin geser `conditionScore` → eksposur jalan Modul A berubah. Data simulasi, bukan LIDAR live** |
-| **Driver Dashboard** | **D** | **Surface driver (login peran `driver`): kecepatan maks aman, massa muatan, identitas, kondisi unit, target produksi, peta jalan — besar & terbaca sekilas** |
+## Getting started
 
-## Modul C — Speed Optimization (TKPH), lebih dekat
-**TKPH** (Tonne-Kilometre Per Hour) adalah standar industri ban tambang: tiap tipe ban punya batas TKPH dari katalog pabrik. Beban kerja ban = berat yang ditanggung × kecepatan rata-rata — jadi makin berat muatan, makin rendah batas kecepatan aman.
+Requires Node 18 or newer.
 
-- **§C.1–§C.3** — beban ban kritis `Qa`, TKPH site (`Qa × Vm`), TKPH ban (katalog × koreksi suhu × situs), lalu `Vmax_safe = TKPH_ban / Qa`. Overload menaikkan `Qa` ⇒ Vmax turun.
-- **§C.4** — dari target produksi harian & cycle time, dihitung kecepatan yang **dibutuhkan**.
-- **§C.5 (rekonsiliasi satuan)** — keputusan dibandingkan **hanya pada basis kecepatan kerja rata-rata** (native TKPH). Angka yang ditampilkan ke driver dikonversi eksplisit ke **basis travel/spidometer** (`÷ travelFraction`) — tidak ada perbandingan "apel-jeruk".
-- **§C.6 (keputusan)** — **AMAN** (jalankan pada V_required) atau **KONFLIK** → JANGAN ngebut; tampilkan opsi terukur: tambah N unit, turunkan target ke X t/hari, kurangi overload ke Y t (basis TKPH), atau pangkas waktu tetap (basis travel/kelayakan).
-- **Panel HD785 ringkas** — payload aktual (Modul B) → `Qa` → Vmax_safe, mendemonstrasikan "muatan X t > target → maks Y km/jam".
+```bash
+npm install          # installs all three workspaces
+npm run db:setup     # migrate, generate client, seed sample data (30 haul trucks, 12 HD785)
+npm run dev          # server on :3001, client on :5173
+```
 
-Semua parameter (katalog TKPH per model ban, koreksi suhu/situs, jam kerja, waktu tetap, jarak, target produksi) **editable** & bertanda **ASUMSI**; nilai katalog TKPH bertanda **WAJIB DICARI** dari brosur pabrik (lihat `docs/ASSUMPTIONS.md` §F). Tersimpan di DB (tabel `SpeedParams` + `TkphCatalog`), **terpisah** dari parameter finansial agar sanity Modul A/B tak tersentuh.
+Create `server/.env` with at least:
 
-## Mengganti dengan data riil KPP (tanpa ubah kode)
-Buka layar **Data / Import**, pilih jenis data, unggah `.csv`/`.xlsx`. Validasi per-baris: baris rusak dilaporkan, baris valid tetap disimpan; impor ulang dengan `id` sama = **upsert**. Pemetaan unit ditegakkan (impor ban menolak HD785, impor payload menolak truk jalan). Contoh siap-pakai ada di **`server/sample-data/`** (termasuk `units-INVALID.csv` untuk mencoba validasi).
+```
+DATABASE_URL="file:./dev.db"
+```
 
-**Kolom per entity** (wajib; `[opsional]`):
-| Entity | Kolom |
-|---|---|
-| `units` | id · category (`haul_truck`\|`pit_dumper`) · model · tareKg · ratedPayloadKg · tiresCount · [tireModel] · [tirePriceIdr] · [kmPerYear] |
-| `operators` | id · name · shift (`day`\|`night`) |
-| `segments` | id · name · surface (`laterite`\|`rock`\|`sealed`) · lengthKm · conditionScore (0–1) · avgSpeedLoadedKmh · avgSpeedEmptyKmh |
-| `tires` | id · unitId (haul_truck) · position · installDate · [removalDate] · [kmAtRemoval] · [avgPressureDeviationPct] · [loadIndex] · removalReason (`worn`\|`cut`\|`overload`\|`scheduled`) · costIdr |
-| `payload` | id · unitId (HD785) · operatorId · timestamp · measuredPayloadKg · targetPayloadKg *(status dihitung)* |
-| `calibration` | id · unitId (HD785) · lastCalibrationDate · scaleStudyOffsetPct |
+Then open http://localhost:5173.
 
-Parameter yang **diedit di layar** (bukan via import), semuanya tersimpan di DB:
-- **Finansial & ROI** — harga ban, capture rate, armada, capex/opex, lever payload (default bertanda ASUMSI, tombol "Reset ke default").
-- **Speed Optimization** — katalog TKPH per model ban, koreksi suhu/situs, jam kerja, waktu tetap, jarak, target produksi (idem, "Reset ke default").
+Other commands:
 
-## Auth & peran (opsional, Modul D)
-Default **nonaktif** — demo langsung jalan tanpa login (akses penuh = admin). Untuk mengaktifkan login + peran, set `AUTH_ENABLED=true` di `server/.env` (set juga `AUTH_SECRET` untuk produksi). Saat aktif: semua endpoint butuh `Authorization: Bearer <token>` (kecuali `/api/health` & `/api/auth/*`); client menampilkan layar login (token JWT 12 jam, tombol **Keluar**).
+```bash
+npm run test         # full test suite across all workspaces
+npm run typecheck    # strict TypeScript check
+npm run build        # production build
+```
 
-**Dua peran** (sengaja tipis — bukan RBAC kompleks/multi-tenant):
-- **admin** — seluruh modul (A/B/C), Finansial, Dashboard, Data/Import, **Speed Monitor** & **Peta Jalan**.
-- **driver** — hanya **Driver Dashboard** untuk unitnya: kecepatan maks aman, massa muatan, identitas, kondisi unit (ban/kalibrasi), target produksi, peta jalan; endpoint admin → **403**.
+## Deployment
 
-Akun demo (di-seed; password **plain** = kredensial demo): admin `kpp` / `muatcerdas` · driver `andi` / `andi123` (HD-01), `budi` / `budi123` (HT-01), `citra` (HD-03), `dedi` (HT-07). Kembalikan `AUTH_ENABLED=false` untuk demo tanpa login.
+The included `Dockerfile` builds a single service that serves both the API and the client.
 
-## Kualitas & pengujian
-- **Uji lengkap** (domain murni di `shared/` + service/integration di `server/`) — `npm run test`; logika Modul A/B/C tetap hijau setelah M10 (tak tersentuh).
-- Sanity finansial PRD §8 dikunci (capturedPerUnit ≈ Rp53,8 jt/unit; fleet 30 ≈ Rp1,62 M/th; payback ≈ 3,7 bln).
-- Modul C mengunci **AC#1–#5**: overload ⇒ Vmax turun · target naik ⇒ V_required naik · AMAN+rekomendasi · KONFLIK+opsi terukur · rekonsiliasi basis §C.5.
-- TypeScript `strict` di 3 workspace; validasi I/O dengan Zod; logika domain murni & terjelaskan (bukan black-box).
+1. Sign in to [Render](https://render.com) with GitHub.
+2. Choose **New > Blueprint** and select this repository. Render reads `render.yaml` and builds the image.
+3. Wait 3 to 5 minutes for the build, then open the generated URL.
 
-## Definition of Done (CLAUDE.md)
-- [x] Semua FR "Must" lulus acceptance criteria PRD §8 (engine §12 + unit test penjaga).
-- [x] `client` & `server` jalan via satu perintah (`npm run dev`).
-- [x] Import dataset contoh sukses & hasil cocok unit test domain.
-- [x] Prediksi & analitik tampil akurat (sisa umur ban, distribusi payload, kecepatan TKPH, finansial konsisten lintas layar).
-- [x] README + cara ganti data riil terisi.
+On the free tier the SQLite database resets on every restart and the instance sleeps after about 15 minutes of inactivity, so the first request afterward takes around a minute. This is fine for demos. Any Docker host that sets a `PORT` environment variable (Fly.io, Railway) also works.
 
-## Status & roadmap
-- **M1–M8** — Fondasi, domain & test, seed/import, Modul A, Modul B, Finansial/Dashboard, Laporan/Polish, Auth tipis. ✅
-- **M9 — Modul C (Speed/TKPH).** ✅ (dokumen kanonik: `docs/MODULE_C_SPEED.md`)
-- **M10 — Modul D (Driver & Road Mapping).** ✅ RBAC dua peran (admin/driver), **Driver Dashboard** (reuse A/B/C), dan prototipe **Peta Jalan** (SVG: segmen berwarna per kondisi + truk pemeta lead/last) dengan `conditionScore` editable yang menyetir eksposur jalan **Modul A**. Data simulasi (mewakili LIDAR), **bukan feed live**. (dokumen: `docs/MODULE_D_DRIVER_AND_MAPPING.md`)
+## Using real data
 
-## Catatan jujur
-- **Asumsi**: lever payload (underload/overload, faktor keausan) default **0** sampai diisi — agar ROI tidak dibesar-besarkan. `currentKm` ban & spec excavator/densitas = heuristik/asumsi bertanda, bukan data KPP terverifikasi (PRD §16).
-- **Modul C**: penerapan prinsip TKPH (deterministik, terjelaskan — **bukan AI**), bukan menemukan fisika baru. Katalog TKPH per model ban = placeholder **WAJIB DICARI** dari brosur pabrik; fraksi beban ban terberat & faktor koreksi = ASUMSI editable. Tampilan "ke driver" adalah keluaran sistem atas data yang di-feed — **bukan** perangkat live di kabin.
-- **Faktor operator** Modul A diturunkan lintas-modul dari kecenderungan overload HD785 (proxy perilaku, terjelaskan — bukan black-box).
-- Verifikasi **Open Question #1** (apakah KPP sudah pakai FMS penuh) sebelum final — `docs/BRD.md` §8 / `docs/PRD.md` §16.
-- "MuatCerdas" masih placeholder nama.
+Open **Data Import**, pick an entity, and upload a `.csv` or `.xlsx` file. Invalid rows are reported individually while valid rows are saved, and re-importing a row with the same `id` updates it. Sample files, including an intentionally invalid one, are in `server/sample-data/`.
 
-## Peta dokumen
-| File | Isi |
-|---|---|
-| `CLAUDE.md` | Aturan & konteks agen (auto-loaded) |
-| `docs/PRD.md` | Apa: user story, FR, AC, model & rumus §12 |
-| `docs/SRS.md` | Requirement perangkat lunak formal |
-| `docs/TECH_DESIGN.md` | Bagaimana: arsitektur, engine, batas integrasi |
-| `docs/IMPLEMENTATION_PLAN.md` | Urutan kerja M1–M10 |
-| `docs/MODULE_C_SPEED.md` | Spesifikasi Modul C (Speed/TKPH) — sumber kebenaran §C |
-| `docs/MODULE_D_DRIVER_AND_MAPPING.md` | Spesifikasi Modul D (peran, driver, road mapping) — rencana M10 |
-| `docs/ASSUMPTIONS.md` | Daftar asumsi/placeholder yang perlu data riil + prioritas |
-| `docs/BRD.md` · `docs/VIBECODING_GUIDE.md` | Bisnis · cara mengarahkan agen |
+| Entity | Columns (optional in brackets) |
+| --- | --- |
+| `units` | id, category (`haul_truck` or `pit_dumper`), model, tareKg, ratedPayloadKg, tiresCount, [tireModel], [tirePriceIdr], [kmPerYear] |
+| `operators` | id, name, shift (`day` or `night`) |
+| `segments` | id, name, surface (`laterite`, `rock`, `sealed`), lengthKm, conditionScore (0 to 1), avgSpeedLoadedKmh, avgSpeedEmptyKmh |
+| `tires` | id, unitId, position, installDate, [removalDate], [kmAtRemoval], [avgPressureDeviationPct], [loadIndex], removalReason (`worn`, `cut`, `overload`, `scheduled`), costIdr |
+| `payload` | id, unitId, operatorId, timestamp, measuredPayloadKg, targetPayloadKg |
+| `calibration` | id, unitId, lastCalibrationDate, scaleStudyOffsetPct |
+
+Financial assumptions and TKPH parameters are edited directly in the app and stored in the database, each with a reset to default option.
+
+## Authentication
+
+Authentication is off by default so the demo runs without a login. Set `AUTH_ENABLED=true` and `AUTH_SECRET` in `server/.env` to turn it on. Requests then need a JWT bearer token (valid for 12 hours).
+
+- **Admin:** full access to every module, finance, import, and the road map.
+- **Driver:** only the driver dashboard for their assigned unit.
+
+Seeded demo accounts: admin `kpp` / `muatcerdas`, drivers `andi` / `andi123` (HD-01) and `budi` / `budi123` (HT-01).
+
+## Limitations
+
+- Road condition data is simulated to represent LIDAR mapping. There is no live sensor feed yet.
+- TKPH catalog values per tire model are placeholders and should be replaced with manufacturer data.
+- Live integration with telematics, payload monitoring, or fleet management systems is planned. The architecture already separates these integration boundaries.
+- Some inputs, such as current tire mileage and excavator specs, are heuristics until verified against real KPP data. All assumptions are listed in `docs/ASSUMPTIONS.md`.
+
+## Documentation
+
+| File | Contents |
+| --- | --- |
+| `docs/PRD.md` | User stories, requirements, models and formulas |
+| `docs/TECH_DESIGN.md` | Architecture and integration boundaries |
+| `docs/MODULE_C_SPEED.md` | Speed optimization specification |
+| `docs/MODULE_D_DRIVER_AND_MAPPING.md` | Roles, driver dashboard, road mapping |
+| `docs/ASSUMPTIONS.md` | Assumptions that need real data, by priority |
+
+## Author
+
+Built by [Dylan Moreno](https://github.com/dylanmorenow) for the Astranauts hackathon.
