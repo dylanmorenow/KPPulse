@@ -6,13 +6,13 @@ Fleet intelligence for mining haul trucks. KPPulse turns raw fleet data into dec
 
 Built for the Astranauts Case Competition, covering two KPP Mining cases in one full-stack platform.
 
-<!-- ![KPPulse dashboard](docs/screenshots/dashboard.png) -->
-
 **Live demo:** [kppulse.onrender.com](https://kppulse.onrender.com) &nbsp;·&nbsp; **Pitch deck:** [KPPulse-Pitch-Deck.pdf](docs/KPPulse-Pitch-Deck.pdf) &nbsp;·&nbsp; **Demo login:** admin `kpp` / `muatcerdas`, driver `budi` / `budi123`
 
 ## The problem
 
 Mining contractors already collect data on tires, payloads, and haul routes, but that data rarely drives daily decisions. Tires wear out early, dump trucks leave the pit overloaded or underloaded, and drivers speed up to hit production targets at the cost of tire damage. Each issue is expensive on its own, and they make each other worse.
+
+![Executive summary: the problem, the solution, and the expected impact](docs/assets/deck/executive-summary.webp)
 
 ## What it does
 
@@ -25,12 +25,43 @@ Mining contractors already collect data on tires, payloads, and haul routes, but
 
 The core platform adds CSV/XLSX data import, a financial engine (avoided cost, payback period, ROI), and downloadable PDF/CSV reports.
 
+![How KPPulse works: field inputs, analysis engine, and decision outputs](docs/assets/deck/how-it-works.webp)
+
 ### Design decisions
 
 - **Explainable over black box.** Tire life uses linear regression with visible coefficients and confidence intervals. Speed limits come from deterministic TKPH calculations. Every number on screen can be traced back to its formula.
 - **One source of truth.** All domain logic lives in a shared package used by both the server and the client, so the dashboard and the API can never disagree.
 - **Conservative by default.** Payload levers in the ROI model start at zero, so projected savings are never inflated before real data is loaded.
 - **Ready for real data.** Swap the sample dataset for real CSV/XLSX exports from the import screen, with no code changes.
+
+![TKPH engine: load, temperature, and road condition in; safe speed and production target out](docs/assets/deck/tkph-engine.webp)
+
+## A look inside
+
+Slides from the [pitch deck](docs/KPPulse-Pitch-Deck.pdf), showing the app with notes on what each screen does.
+
+![Dashboard: cost exposure, daily coal quota, tire and payload status in one screen](docs/assets/deck/dashboard.webp)
+
+<table>
+  <tr>
+    <td width="50%"><img src="docs/assets/deck/haul-truck-tires.webp" alt="Haul truck tire life prediction and recommendations"></td>
+    <td width="50%"><img src="docs/assets/deck/hd785-payload.webp" alt="HD785 payload analytics and calibration"></td>
+  </tr>
+  <tr>
+    <td align="center"><b>Tire life</b>: remaining life per unit, wear causes, and prioritized actions</td>
+    <td align="center"><b>HD785 payload</b>: load distribution against 91 t, real-time monitoring, calibration</td>
+  </tr>
+  <tr>
+    <td width="50%"><img src="docs/assets/deck/operations.webp" alt="Operations: safe speed and road map"></td>
+    <td width="50%"><img src="docs/assets/deck/driver-view.webp" alt="Driver view for haul trucks and HD785"></td>
+  </tr>
+  <tr>
+    <td align="center"><b>Operations</b>: safe speed per segment and the road condition map</td>
+    <td align="center"><b>Driver view</b>: speed limit, load status, and hazard alerts for one truck</td>
+  </tr>
+</table>
+
+![Business case: CapEx, OpEx, net benefit, and ROI](docs/assets/deck/business-case.webp)
 
 ## Screens
 
