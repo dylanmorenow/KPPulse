@@ -8,7 +8,7 @@ Built for the Astranauts hackathon, covering two KPP Mining cases in one full-st
 
 <!-- ![KPPulse dashboard](docs/screenshots/dashboard.png) -->
 
-**Pitch deck:** [KPPulse-Pitch-Deck.pdf](docs/KPPulse-Pitch-Deck.pdf) &nbsp;·&nbsp; **Live demo:** [add link here](#) &nbsp;·&nbsp; **Demo login:** admin `kpp` / `muatcerdas`, driver `budi` / `budi123`
+**Pitch deck:** [KPPulse-Pitch-Deck.pdf](docs/KPPulse-Pitch-Deck.pdf) &nbsp;·&nbsp; **Demo login:** admin `kpp` / `muatcerdas`, driver `budi` / `budi123`
 
 ## The problem
 
