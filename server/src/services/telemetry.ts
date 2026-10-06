@@ -7,7 +7,7 @@
 // mewakili aliran fix GNSS real-time dari perangkat Teltonika FMB yang terpasang; bila kelak
 // disambung ke feed perangkat/FMS lain, cukup ganti adapter tanpa mengubah Modul A/B/C.
 
-import { groundSpeedFromFixes, type GpsFix } from "@muatcerdas/shared";
+import { groundSpeedFromFixes, type GpsFix } from "@kppulse/shared";
 import { prisma } from "../db";
 
 export interface UnitTelemetry {

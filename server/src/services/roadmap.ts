@@ -9,7 +9,7 @@ import {
   type RoadCondition,
   type HazardType,
   type HazardLike,
-} from "@muatcerdas/shared";
+} from "@kppulse/shared";
 import { prisma } from "../db";
 import { getFleetTelemetry } from "./telemetry";
 

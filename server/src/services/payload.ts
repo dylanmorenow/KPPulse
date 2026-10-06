@@ -11,7 +11,7 @@ import {
   type PayloadStats,
   type OverloadWearResult,
   type CostParams,
-} from "@muatcerdas/shared";
+} from "@kppulse/shared";
 import { prisma } from "../db";
 
 const HD785_TARGET_KG = 91_000;

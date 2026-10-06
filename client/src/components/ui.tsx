@@ -1,6 +1,6 @@
 // Komponen UI kecil yang dipakai ulang. Angka SELALU lewat shared/format (NFR-0002-3/8).
 import type { ReactNode } from "react";
-import { formatNumber } from "@muatcerdas/shared";
+import { formatNumber } from "@kppulse/shared";
 import type { TireStatus } from "../api/tires";
 
 export function cx(...parts: Array<string | false | null | undefined>): string {

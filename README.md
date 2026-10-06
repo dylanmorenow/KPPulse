@@ -1,3 +1,5 @@
+![KPPulse, Mining Fleet System by team IMOGA](docs/assets/cover.webp)
+
 # KPPulse
 
 Fleet intelligence for mining haul trucks. KPPulse turns raw fleet data into decisions about tire life, payload, and safe driving speed, and expresses every result in Rupiah.
@@ -6,7 +8,7 @@ Built for the Astranauts hackathon, covering two KPP Mining cases in one full-st
 
 <!-- ![KPPulse dashboard](docs/screenshots/dashboard.png) -->
 
-**Live demo:** [add link here](#) &nbsp;·&nbsp; **Demo login:** admin `kpp` / `muatcerdas`, driver `budi` / `budi123`
+**Pitch deck:** [KPPulse-Pitch-Deck.pdf](docs/KPPulse-Pitch-Deck.pdf) &nbsp;·&nbsp; **Live demo:** [add link here](#) &nbsp;·&nbsp; **Demo login:** admin `kpp` / `muatcerdas`, driver `budi` / `budi123`
 
 ## The problem
 
@@ -58,7 +60,7 @@ TypeScript end to end, organized as npm workspaces.
 - **Deployment:** Docker, Render
 
 ```
-muatcerdas/
+kppulse/
 ├─ shared/src/
 │  ├─ tire/       prediction, wear attribution, tire finance
 │  ├─ payload/    analytics, wear link, guidance, calibration, policy
@@ -139,12 +141,13 @@ Seeded demo accounts: admin `kpp` / `muatcerdas`, drivers `andi` / `andi123` (HD
 
 | File | Contents |
 | --- | --- |
+| `docs/KPPulse-Pitch-Deck.pdf` | Pitch deck: business case, solution, impact, and ROI |
 | `docs/PRD.md` | User stories, requirements, models and formulas |
 | `docs/TECH_DESIGN.md` | Architecture and integration boundaries |
 | `docs/MODULE_C_SPEED.md` | Speed optimization specification |
 | `docs/MODULE_D_DRIVER_AND_MAPPING.md` | Roles, driver dashboard, road mapping |
 | `docs/ASSUMPTIONS.md` | Assumptions that need real data, by priority |
 
-## Author
+## Team
 
-Built by [Dylan Moreno](https://github.com/dylanmorenow) for the Astranauts hackathon.
+Built by team **IMOGA** (Elroy, [Dylan](https://github.com/dylanmorenow), Leon, Gerald, and Parsa) for the Astranauts Business Challenge, KPP Mining case.

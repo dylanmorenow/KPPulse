@@ -1,7 +1,7 @@
 // Revisi F3 — peta bahaya jalan LiDAR (prototipe). Strip rute KM33→Jetty bersegmen (warna kondisi)
 // + penanda bahaya per posisi km (warna per tipe) dgn penataan lane anti-tumpang-tindih + legenda.
 // Data SIMULASI mewakili keluaran LiDAR (truk pemeta lead/last) — BUKAN feed live.
-import { conditionColor, hazardColor, hazardLabel, type HazardType, type SpeedActualStatus } from "@muatcerdas/shared";
+import { conditionColor, hazardColor, hazardLabel, type HazardType, type SpeedActualStatus } from "@kppulse/shared";
 import type { RoadMapData, RoadMapLivePosition } from "../api/roadmap";
 
 // Warna penanda truk live menurut status kecepatan aktual vs batas aman.

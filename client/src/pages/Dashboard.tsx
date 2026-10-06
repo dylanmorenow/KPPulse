@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { formatNumber, formatRupiah, formatPersen, formatTon } from "@muatcerdas/shared";
+import { formatNumber, formatRupiah, formatPersen, formatTon } from "@kppulse/shared";
 import { useDashboard } from "../api/finance";
 import { useRoadMap } from "../api/roadmap";
 import { HazardMap } from "../components/HazardMap";

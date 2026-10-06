@@ -1,6 +1,6 @@
 // Bar atribusi penyebab keausan (§12.2) — Recharts horizontal bar (km shortfall per faktor).
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Cell } from "recharts";
-import { formatNumber } from "@muatcerdas/shared";
+import { formatNumber } from "@kppulse/shared";
 import type { FactorContribution } from "../api/tires";
 
 export function FactorBarChart({ contributions }: { contributions: FactorContribution[] }) {

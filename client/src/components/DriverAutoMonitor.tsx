@@ -4,7 +4,7 @@
 // Bukan tombol manual; sistem dianggap sudah terintegrasi membaca GPS.
 import { useEffect, useRef, useState } from "react";
 import { useQueryClient } from "@tanstack/react-query";
-import { hazardLabel, type SpeedViolationLevel, type HazardProximity } from "@muatcerdas/shared";
+import { hazardLabel, type SpeedViolationLevel, type HazardProximity } from "@kppulse/shared";
 import { useOfflineQueue } from "../lib/useOfflineQueue";
 
 const COOLDOWN_MS = 60_000; // jeda minimal antar kejadian sejenis agar tak membanjiri

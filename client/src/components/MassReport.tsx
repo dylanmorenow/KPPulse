@@ -3,7 +3,7 @@
 // Truk hauling: massa per 2 bucket (batubara). Semua → antrean store-and-forward (simulasi).
 import { useState } from "react";
 import { useQueryClient } from "@tanstack/react-query";
-import { materialLabel } from "@muatcerdas/shared";
+import { materialLabel } from "@kppulse/shared";
 import { useOfflineQueue } from "../lib/useOfflineQueue";
 import { useExcavatorOperators, useAddExcavatorOperator } from "../api/mass";
 import { cx } from "./ui";

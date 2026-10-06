@@ -32,7 +32,7 @@ import {
   type RoadOpsCondition,
   type SpeedActualStatus,
   type SpeedViolationLevel,
-} from "@muatcerdas/shared";
+} from "@kppulse/shared";
 import { prisma } from "../db";
 import { zoneConditionMap } from "./zones";
 import { getFleetTelemetry } from "./telemetry";

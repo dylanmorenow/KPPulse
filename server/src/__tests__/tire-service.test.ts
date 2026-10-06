@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { fitTireModel, predictRemainingLife, attributeWear, type TireFeatures } from "@muatcerdas/shared";
+import { fitTireModel, predictRemainingLife, attributeWear, type TireFeatures } from "@kppulse/shared";
 import {
   deriveOperatorFactors,
   unitOperatorFactor,

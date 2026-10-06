@@ -16,7 +16,7 @@ RUN npm install
 
 # Sumber + build client (vite → client/dist)
 COPY . .
-RUN npm run build -w @muatcerdas/client
+RUN npm run build -w @kppulse/client
 
 ENV NODE_ENV=production
 ENV PORT=10000
@@ -26,5 +26,5 @@ EXPOSE 10000
 
 # Saat start: terapkan migrasi → seed (data hari ini segar) → jalankan server (API + client).
 CMD npx prisma migrate deploy --schema server/prisma/schema.prisma \
-  && npm run db:seed -w @muatcerdas/server \
-  && npm run start -w @muatcerdas/server
+  && npm run db:seed -w @kppulse/server \
+  && npm run start -w @kppulse/server

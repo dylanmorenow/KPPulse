@@ -1,7 +1,7 @@
 // Revisi F3 + akhir — kejadian per unit dari surface driver (SIMULASI): overspeed, melewati
 // zona bahaya, rem mendadak. Dikonsumsi rekomendasi Modul A + grading risiko ban.
 
-import { gradeCounts, estimateExtraWearKm, worstGrade, type GradeCounts, type TireRiskGrade } from "@muatcerdas/shared";
+import { gradeCounts, estimateExtraWearKm, worstGrade, type GradeCounts, type TireRiskGrade } from "@kppulse/shared";
 import { prisma } from "../db";
 
 const EVENT_TYPES = ["overspeed", "hazard", "hard_braking"] as const;

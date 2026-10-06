@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { formatNumber } from "@muatcerdas/shared";
+import { formatNumber } from "@kppulse/shared";
 import { useTireUnits, type TireUnitSummary } from "../api/tires";
 import {
   PageHeader,

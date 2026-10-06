@@ -1,4 +1,4 @@
-// Entitas inti MuatCerdas — mirror PRD §11.
+// Entitas inti KPPulse — mirror PRD §11.
 // Ini sumber kebenaran tipe domain; Prisma (storage) & client mengikuti bentuk ini.
 // Catatan: enum direpresentasikan sebagai union literal di sini; di Prisma/SQLite
 // menjadi kolom String yang ditegakkan oleh schemas.ts (Zod).

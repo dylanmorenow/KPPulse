@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { defaultSpeedParams, defaultTkphCatalog, type SpeedParams } from "@muatcerdas/shared";
+import { defaultSpeedParams, defaultTkphCatalog, type SpeedParams } from "@kppulse/shared";
 import { computeSpeedModel, buildSpeedUnitRow, type SpeedUnitInput } from "../services/speed";
 
 const catalog = new Map(Object.entries(defaultTkphCatalog));

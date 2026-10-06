@@ -1,6 +1,6 @@
 // Peta Jalan Kamera AI (prototipe). Dua rute: KM33→Jetty (truk hauling) & in-pit Indexim (HD785).
 // conditionScore diturunkan dari bahaya kamera AI (bukan slider manual) → menyetir Modul A/C.
-import { formatPersen, conditionColor } from "@muatcerdas/shared";
+import { formatPersen, conditionColor } from "@kppulse/shared";
 import { useRoadMap, useRecomputeRoadmap, type MapArea } from "../api/roadmap";
 import { PageHeader, Card, Stat, Badge, Loading, ErrorState, InfoTip } from "../components/ui";
 import { HazardMap } from "../components/HazardMap";

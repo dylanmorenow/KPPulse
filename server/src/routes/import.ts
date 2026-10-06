@@ -13,7 +13,7 @@ import {
   type RawRow,
   type ValidateCtx,
 } from "../services/import";
-import type { UnitCategory } from "@muatcerdas/shared";
+import type { UnitCategory } from "@kppulse/shared";
 
 async function loadUnitCategories(): Promise<Map<string, UnitCategory>> {
   const units = await prisma.unit.findMany({ select: { id: true, category: true } });

@@ -14,7 +14,7 @@ import {
   type TireModel,
   type CostParams,
   type TireRiskGrade,
-} from "@muatcerdas/shared";
+} from "@kppulse/shared";
 import { prisma } from "../db";
 import { getDriverEventSummaryByUnit } from "./driverEvents";
 import { resolvedKeySet } from "./resolved";

@@ -1,5 +1,5 @@
 // Indikator pemuatan besar HIJAU/KUNING/MERAH (§12.5) untuk Loading Guidance.
-import type { LoadingStatus } from "@muatcerdas/shared";
+import type { LoadingStatus } from "@kppulse/shared";
 import { cx } from "./ui";
 
 const META: Record<LoadingStatus, { ring: string; dot: string; label: string; sub: string }> = {

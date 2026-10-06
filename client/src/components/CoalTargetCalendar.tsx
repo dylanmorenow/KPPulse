@@ -1,7 +1,7 @@
 // Item 4 — kalender target/kuota produksi batubara harian. Admin menyetel target tiap hari
 // untuk beberapa hari ke depan. Hari tanpa setelan memakai target default (OpsParams).
 import { useState } from "react";
-import { formatNumber } from "@muatcerdas/shared";
+import { formatNumber } from "@kppulse/shared";
 import { useCoalTargets, useSaveCoalTarget, localDateKey } from "../api/finance";
 import { useOpsParams } from "../api/fleet";
 import { Card } from "../components/ui";

@@ -1,4 +1,4 @@
-# SRS-0002: MuatCerdas — Software Requirements Specification
+# SRS-0002: KPPulse — Software Requirements Specification
 
 **Author:** Tim Astranauts · **Date:** 2026-06-14 · **Status:** Draft
 **Terkait:** `docs/PRD.md` (sumber FR/AC & rumus §12), `docs/TECH_DESIGN.md` (arsitektur)
@@ -6,7 +6,7 @@
 > Requirement perangkat lunak formal & dapat ditelusuri. Merujuk PRD (tak mengulang user story) & TECH_DESIGN (tak mengulang arsitektur). Konflik nilai/rumus → **PRD §11–§12 menang**.
 
 ## 1. Pendahuluan
-- **Tujuan.** Menetapkan apa yang HARUS dilakukan MuatCerdas agar dapat diverifikasi.
+- **Tujuan.** Menetapkan apa yang HARUS dilakukan KPPulse agar dapat diverifikasi.
 - **Lingkup.** Aplikasi web full-stack yang berfungsi nyata: import data, simpan, model & analitik (umur ban truk hauling; payload HD785), finansial/ROI, laporan. Bekerja atas data import/contoh; integrasi telematik live di luar lingkup (PRD §1, §6).
 - **Definisi.** Glosarium PRD §15.
 

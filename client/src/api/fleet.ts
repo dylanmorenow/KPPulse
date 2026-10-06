@@ -1,6 +1,6 @@
 // Hook revisi item 4 — kelola armada (jumlah unit HD785) & operator (admin).
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import type { OpsParams } from "@muatcerdas/shared";
+import type { OpsParams } from "@kppulse/shared";
 import { apiGet, apiSend } from "./client";
 
 export interface Operator {

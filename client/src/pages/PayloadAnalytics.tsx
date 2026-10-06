@@ -12,7 +12,7 @@ import {
   CartesianGrid,
   ReferenceLine,
 } from "recharts";
-import { formatNumber, formatPersen, formatTon } from "@muatcerdas/shared";
+import { formatNumber, formatPersen, formatTon } from "@kppulse/shared";
 import { usePayloadAnalytics, type PayloadFilter, type GroupStat } from "../api/payload";
 import { PageHeader, Card, Stat, Loading, ErrorState, InfoTip } from "../components/ui";
 import { ExportButton } from "../components/ExportButton";

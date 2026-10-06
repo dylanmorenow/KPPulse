@@ -1,6 +1,6 @@
 // Hook TanStack Query untuk Inti — Finansial/ROI + Dashboard.
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import type { CostParams } from "@muatcerdas/shared";
+import type { CostParams } from "@kppulse/shared";
 import { apiGet, apiSend } from "./client";
 
 export interface FinanceData {

@@ -6,7 +6,7 @@ import {
   hazardLabel,
   type SpeedViolationLevel,
   type HazardProximity,
-} from "@muatcerdas/shared";
+} from "@kppulse/shared";
 import { useDriverMe, type DriverBundle } from "../api/driver";
 import { clearToken } from "../api/auth";
 import { Loading, ErrorState, cx } from "../components/ui";

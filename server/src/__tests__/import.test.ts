@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest";
 import { parseFile, validateRows, isImportEntity, type ValidateCtx } from "../services/import";
-import type { UnitCategory } from "@muatcerdas/shared";
+import type { UnitCategory } from "@kppulse/shared";
 
 function ctxFrom(map: Record<string, UnitCategory>): ValidateCtx {
   return { unitCategory: new Map(Object.entries(map)) };

@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest";
 import { payloadTrend, payloadHistogram, deriveUnitShiftOperators } from "../services/payload";
-import type { PayloadEvent } from "@muatcerdas/shared";
+import type { PayloadEvent } from "@kppulse/shared";
 
 const T = 91_000;
 const ev = (id: string, unitId: string, kg: number, ts: string): PayloadEvent => ({

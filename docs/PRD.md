@@ -1,7 +1,7 @@
-# PRD-0002: MuatCerdas — Tire & Payload Intelligence Platform
+# PRD-0002: KPPulse — Tire & Payload Intelligence Platform
 
 **Author:** Tim Astranauts · **Date:** 2026-06-14 · **Status:** Draft (case KPP Mining — lomba Astranauts)
-**Product codename:** `MuatCerdas` *(placeholder, boleh diganti)*
+**Product codename:** `KPPulse` *(placeholder, boleh diganti)*
 
 > Dokumen ini hybrid: §1–§9 PRD produk (apa & kenapa), §10–§14 build-spec untuk agen koding (Claude Code). Sumber kebenaran model/rumus = §11–§12. Bangun **aplikasi sungguhan yang berfungsi**, bukan demo. **Tanpa Pareto. Tanpa fitur tak perlu.**
 
@@ -13,7 +13,7 @@ KPP Mining (grup Astra) adalah kontraktor tambang batu bara terintegrasi. Di sit
 - **Case 1 — Umur ban truk hauling jalan.** Pada rute CPP KM 33 → Jetty (±35 km, mayoritas laterit), ban truk **Scania P410, Scania R580, Volvo FH16 6x4T, Scania 620 XT** memendek umurnya akibat kondisi jalan, muatan, tekanan ban, dan gaya operator → penggantian dini → biaya naik.
 - **Case 2 — Optimalisasi payload HD785.** Dump truck in-pit **HD785** (dimuat excavator PC2000/PC1250/PC850): underload menaikkan ritase & biaya; overload merusak ban/rem/drivetrain & menambah risiko.
 
-**Insight produk:** masalahnya bukan ketiadaan alat ukur, melainkan data (umur ban, payload, kondisi, operator) **tidak disatukan, dimodelkan, dan ditindaklanjuti**. MuatCerdas menjadi platform yang melakukan itu dengan model yang transparan dan dapat dijalankan pada data nyata.
+**Insight produk:** masalahnya bukan ketiadaan alat ukur, melainkan data (umur ban, payload, kondisi, operator) **tidak disatukan, dimodelkan, dan ditindaklanjuti**. KPPulse menjadi platform yang melakukan itu dengan model yang transparan dan dapat dijalankan pada data nyata.
 
 **Batas jujur (penting):** platform bekerja atas data yang **di-import** (CSV/XLSX) atau **dataset contoh** bawaan. Disediakan batas integrasi (import + API) agar suatu saat bisa tersambung ke FMS/PLM, tetapi **integrasi telematik live bukan bagian rilis ini** dan tidak boleh dipalsukan.
 
@@ -264,7 +264,7 @@ Navigasi sidebar; header nama produk + tagline.
 - **Overload/Underload:** muatan di atas/di bawah target; **capture rate:** fraksi kerugian teoretis yang realistis tertangkap.
 
 ## 16. Open Questions
-1. Apakah KPP sudah pakai FMS penuh (mis. Modular Mining DISPATCH)? Bila ya, posisikan MuatCerdas sebagai pelengkap (model umur-ban & payload→biaya yang biasanya belum ada). **Verifikasi sebelum final.**
+1. Apakah KPP sudah pakai FMS penuh (mis. Modular Mining DISPATCH)? Bila ya, posisikan KPPulse sebagai pelengkap (model umur-ban & payload→biaya yang biasanya belum ada). **Verifikasi sebelum final.**
 2. Harga & umur ban HD785 + data komponen untuk mengunci §12.4/§12.8.
 3. Ukuran armada truk hauling aktual.
 4. Status & kalibrasi PLM di HD785 KPP.

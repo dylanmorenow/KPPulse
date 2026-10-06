@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { formatRupiah, formatNumber } from "@muatcerdas/shared";
+import { formatRupiah, formatNumber } from "@kppulse/shared";
 import { useTireRecommendations, type TireRecommendation } from "../api/tires";
 import { useResolveAction, useUnresolveAction, useResolvedActions } from "../api/resolved";
 import { PageHeader, Card, Stat, GradeBadge, Loading, ErrorState, InfoTip } from "../components/ui";

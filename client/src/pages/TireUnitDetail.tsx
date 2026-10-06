@@ -1,5 +1,5 @@
 import { useParams, Link } from "react-router-dom";
-import { formatNumber, formatPersen, formatRupiah } from "@muatcerdas/shared";
+import { formatNumber, formatPersen, formatRupiah } from "@kppulse/shared";
 import { useTireUnit } from "../api/tires";
 import {
   PageHeader,

@@ -1,4 +1,4 @@
-# TECH_DESIGN-0002: MuatCerdas — Technical Design
+# TECH_DESIGN-0002: KPPulse — Technical Design
 
 **Author:** Tim Astranauts · **Date:** 2026-06-14 · **Status:** Draft
 **Terkait:** PRD §10–§13 (sumber kebenaran model/rumus = PRD §11–§12), SRS.
@@ -31,7 +31,7 @@
 
 ## 3. Struktur Repo (target)
 ```
-muatcerdas/
+kppulse/
 ├─ package.json            # workspaces: client, server, shared
 ├─ CLAUDE.md  README.md  docs/  .claude/commands/
 ├─ shared/

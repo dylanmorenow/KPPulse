@@ -1,4 +1,4 @@
-# BRD-0002: MuatCerdas — Business Requirements Document
+# BRD-0002: KPPulse — Business Requirements Document
 
 **Author:** Tim Astranauts · **Date:** 2026-06-14 · **Status:** Draft
 **Terkait:** `docs/PRD.md`, `docs/SRS.md`
@@ -30,7 +30,7 @@ Manajemen KPP/juri (ROI, payback, risiko) · Tyre/Maintenance Planner (Case 1) �
 
 ## 5. Pasar & Kompetisi (build vs buy)
 - **PLM bawaan HD785** & **sistem sisi-excavator** (Loadrite, ShovelMetrics) menjual **pengukuran** payload; tidak menjual model umur ban maupun keputusan biaya terpadu.
-- **UVP MuatCerdas:** platform **keputusan** — prediksi & atribusi umur ban truk hauling (Case 1) + analitik/optimasi payload HD785 (Case 2) → diterjemahkan ke Rupiah & tindakan, di atas data yang sudah ada. Dirancang agar bisa tersambung ke FMS/PLM ke depan.
+- **UVP KPPulse:** platform **keputusan** — prediksi & atribusi umur ban truk hauling (Case 1) + analitik/optimasi payload HD785 (Case 2) → diterjemahkan ke Rupiah & tindakan, di atas data yang sudah ada. Dirancang agar bisa tersambung ke FMS/PLM ke depan.
 
 ## 6. Cakupan & Batasan Bisnis
 - **In:** platform dua-modul yang berfungsi nyata atas data import/contoh + laporan.

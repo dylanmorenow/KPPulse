@@ -1,4 +1,4 @@
-// Barrel publik paket domain @muatcerdas/shared.
+// Barrel publik paket domain @kppulse/shared.
 export * from "./types";
 export * from "./schemas";
 export * from "./assumptions";

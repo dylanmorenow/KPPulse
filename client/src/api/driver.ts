@@ -1,6 +1,6 @@
 // Hook Modul D — surface driver (data unit sendiri).
 import { useQuery } from "@tanstack/react-query";
-import type { SpeedActualStatus, SpeedViolationLevel, HazardProximity } from "@muatcerdas/shared";
+import type { SpeedActualStatus, SpeedViolationLevel, HazardProximity } from "@kppulse/shared";
 import { apiGet } from "./client";
 import type { RoadMapData } from "./roadmap";
 

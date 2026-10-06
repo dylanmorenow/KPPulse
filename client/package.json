@@ -1,5 +1,5 @@
 {
-  "name": "@muatcerdas/client",
+  "name": "@kppulse/client",
   "version": "0.1.0",
   "private": true,
   "type": "module",
@@ -10,7 +10,7 @@
     "typecheck": "tsc -p tsconfig.json --noEmit"
   },
   "dependencies": {
-    "@muatcerdas/shared": "*",
+    "@kppulse/shared": "*",
     "@tanstack/react-query": "^5.101.0",
     "pdfmake": "^0.3.11",
     "react": "^18.3.1",

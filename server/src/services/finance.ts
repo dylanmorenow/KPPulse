@@ -13,7 +13,7 @@ import {
   type CostParams,
   type OpsParams,
   type CoalQuota,
-} from "@muatcerdas/shared";
+} from "@kppulse/shared";
 import { prisma } from "../db";
 import { getTireUnits } from "./tire";
 import { getPayloadAnalytics, getCalibrationHealth } from "./payload";

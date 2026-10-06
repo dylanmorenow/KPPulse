@@ -1,6 +1,6 @@
 // Pemantauan Muatan (surveyor) — laporan massa real-time per HD785 (massa + material coal/OB +
 // nama operator excavator) dari input operator.
-import { formatNumber, formatTon, materialLabel, classifyPayload, type PayloadStatus } from "@muatcerdas/shared";
+import { formatNumber, formatTon, materialLabel, classifyPayload, type PayloadStatus } from "@kppulse/shared";
 import { useMassMonitoring } from "../api/mass";
 import { PageHeader, Card, Stat, Badge, Loading, ErrorState, InfoTip } from "../components/ui";
 

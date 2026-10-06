@@ -10,7 +10,7 @@ import {
   summarizeMassByMaterial,
   isSameDay,
   type Material,
-} from "@muatcerdas/shared";
+} from "@kppulse/shared";
 import { prisma } from "../db";
 
 export interface MassInputRow {

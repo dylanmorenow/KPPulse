@@ -1,4 +1,4 @@
-# IMPLEMENTATION_PLAN — MuatCerdas
+# IMPLEMENTATION_PLAN — KPPulse
 
 **Cara pakai (Claude Code):** kerjakan **satu milestone sekali jalan**, urut. Tiap milestone: rencanakan singkat → koding → jalankan test → centang `[x]` → commit → lanjut. Patuhi `CLAUDE.md`. Acuan: PRD (FR/AC §7–§8, model §11–§12), SRS, TECH_DESIGN.
 

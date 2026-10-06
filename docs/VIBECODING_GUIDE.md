@@ -1,4 +1,4 @@
-# VIBECODING_GUIDE — Membangun MuatCerdas dengan Claude Code
+# VIBECODING_GUIDE — Membangun KPPulse dengan Claude Code
 
 Panduan praktis mengubah dokumen di repo ini menjadi **aplikasi full-stack yang benar-benar berfungsi** memakai Claude Code.
 
@@ -12,7 +12,7 @@ Panduan praktis mengubah dokumen di repo ini menjadi **aplikasi full-stack yang 
 ## 1. Persiapan
 1. Install Claude Code CLI (butuh Node ≥18): `npm install -g @anthropic-ai/claude-code`, cek `claude --version`.
 2. Di VS Code: install extension resmi **Claude Code** (publisher: anthropic).
-3. **File > Open Folder** → buka folder `muatcerdas/` sebagai root (agar `CLAUDE.md` + `@import` terbaca). Pastikan `.claude/` & `docs/` ikut terbawa saat download.
+3. **File > Open Folder** → buka folder `kppulse/` sebagai root (agar `CLAUDE.md` + `@import` terbaca). Pastikan `.claude/` & `docs/` ikut terbawa saat download.
 4. Buka panel Claude Code (ikon Spark) & login. `git init` + commit awal (untuk checkpoint).
 
 ## 2. Loop kerja: Jelajah → Rencana → Bangun → Uji → Commit

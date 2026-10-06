@@ -6,7 +6,7 @@ import {
   financialSummary,
   tireAvoidableCost,
   type CostParams,
-} from "@muatcerdas/shared";
+} from "@kppulse/shared";
 import { useFinance, useSaveParams, useResetParams } from "../api/finance";
 import { PageHeader, Card, Loading, ErrorState, InfoTip, cx } from "../components/ui";
 

@@ -1,5 +1,5 @@
 // Ekspor laporan: CSV (Blob) + PDF (pdfmake di-lazy-load saat dipakai).
-import { toCsv, formatRupiah, formatNumber, formatPersen } from "@muatcerdas/shared";
+import { toCsv, formatRupiah, formatNumber, formatPersen } from "@kppulse/shared";
 import type { DashboardData } from "../api/finance";
 
 function triggerDownload(blob: Blob, filename: string): void {

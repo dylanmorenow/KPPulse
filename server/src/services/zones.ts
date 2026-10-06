@@ -1,7 +1,7 @@
 // Revisi akhir (ADMIN-8) — kondisi jalan per zona operasi. Memengaruhi kecepatan aman unit
 // di zona itu (selain muatan). Settings: satu baris per zona (cpp/tengah/jetty).
 
-import { ROAD_OPS_CONDITIONS, type RoadOpsCondition } from "@muatcerdas/shared";
+import { ROAD_OPS_CONDITIONS, type RoadOpsCondition } from "@kppulse/shared";
 import { prisma } from "../db";
 
 // cpp/tengah/jetty = rute hauling (truk hauling). site = rute in-pit (HD785).

@@ -8,7 +8,7 @@ import {
   type SpeedActualStatus,
   type SpeedViolationLevel,
   type HazardProximity,
-} from "@muatcerdas/shared";
+} from "@kppulse/shared";
 import { prisma } from "../db";
 import { getSpeedOverview } from "./speed";
 import { getTireUnitDetail } from "./tire";

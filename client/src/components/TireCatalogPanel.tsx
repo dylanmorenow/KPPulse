@@ -1,6 +1,6 @@
 // Item 5 — input tipe ban per unit + katalog tipe ban (keterangan untuk perkiraan umur ideal).
 import { useState } from "react";
-import { formatNumber } from "@muatcerdas/shared";
+import { formatNumber } from "@kppulse/shared";
 import {
   useTireCatalog,
   useSaveTireCatalog,

@@ -15,7 +15,7 @@ import {
   type SpeedParams,
   type RoadOpsCondition,
   type SpeedActualStatus,
-} from "@muatcerdas/shared";
+} from "@kppulse/shared";
 import { useSpeed, useSaveSpeedParams, useResetSpeedParams, type SpeedUnitRow, type Hd785SpeedRow } from "../api/speed";
 import { useZones, useSetZoneCondition } from "../api/zones";
 import { PageHeader, Card, Loading, ErrorState, InfoTip, Badge, cx } from "../components/ui";

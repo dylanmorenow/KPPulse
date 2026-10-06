@@ -2,7 +2,7 @@
 // Pemetaan unit ditegakkan: ban = Scania/Volvo (haul_truck, Modul A); payload = HD785
 // (pit_dumper, Modul B). JANGAN tertukar. Reproducible: PRNG seed tetap + SEED_TODAY tetap.
 //
-// Jalankan: npm run db:seed -w @muatcerdas/server  (atau via db:setup).
+// Jalankan: npm run db:seed -w @kppulse/server  (atau via db:setup).
 
 import {
   defaultCostParams,
@@ -16,7 +16,7 @@ import {
   HAZARD_TYPES,
   type HazardType,
   type HazardLike,
-} from "@muatcerdas/shared";
+} from "@kppulse/shared";
 import { prisma } from "./db";
 import { Rng, daysBefore, clamp } from "./lib/random";
 

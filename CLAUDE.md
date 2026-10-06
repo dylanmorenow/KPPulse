@@ -1,9 +1,9 @@
-# CLAUDE.md — MuatCerdas (Tire & Payload Intelligence Platform untuk KPP)
+# CLAUDE.md — KPPulse (Tire & Payload Intelligence Platform untuk KPP)
 
 > Dibaca otomatis oleh Claude Code tiap sesi. Ini hukum tertinggi proyek; jika konflik dengan prompt biasa, aturan di sini menang. Tetap ringkas & spesifik.
 
 ## Apa proyek ini
-MuatCerdas adalah **aplikasi web full-stack yang benar-benar berfungsi** (bukan demo/mock) untuk KPP Mining. Ia mengubah data armada menjadi keputusan biaya. Dua modul, memetakan dua case KPP:
+KPPulse adalah **aplikasi web full-stack yang benar-benar berfungsi** (bukan demo/mock) untuk KPP Mining. Ia mengubah data armada menjadi keputusan biaya. Dua modul, memetakan dua case KPP:
 
 - **Modul A — Tire Life Intelligence (Case 1):** untuk **truk hauling jalan** di rute laterit CPP KM 33 → Jetty (±35 km): **Scania P410, Scania R580, Volvo FH16 6x4T, Scania 620 XT**. Memprediksi sisa umur ban, mengaitkan penyebab keausan dini, merekomendasikan tindakan, dan menghitung biaya. **Bukan HD785.**
 - **Modul B — Payload Optimization (Case 2):** untuk **dump truck in-pit HD785** (dimuat excavator PC2000/PC1250/PC850). Menganalisis payload vs target 91 ton, deteksi over/underload, kepercayaan kalibrasi, kaitan overload→keausan, dan panduan pemuatan.

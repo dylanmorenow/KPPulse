@@ -13,7 +13,7 @@ import {
   tireRemovalReasonSchema,
   classifyPayload,
   type UnitCategory,
-} from "@muatcerdas/shared";
+} from "@kppulse/shared";
 
 export type RawRow = Record<string, unknown>;
 

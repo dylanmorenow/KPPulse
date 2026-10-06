@@ -1,5 +1,5 @@
 // Revisi item 4 — load/save OpsParams (termasuk jumlah unit HD785).
-import { defaultOpsParams, opsParamsSchema, type OpsParams } from "@muatcerdas/shared";
+import { defaultOpsParams, opsParamsSchema, type OpsParams } from "@kppulse/shared";
 import { prisma } from "../db";
 
 export async function loadOpsParams(): Promise<OpsParams> {

@@ -7,7 +7,7 @@ import type {
   ProductionSpeedResult,
   SpeedActualStatus,
   SpeedViolationLevel,
-} from "@muatcerdas/shared";
+} from "@kppulse/shared";
 import { apiGet, apiSend } from "./client";
 
 export interface SpeedUnitRow {

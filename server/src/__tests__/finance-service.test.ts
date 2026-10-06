@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { defaultCostParams, type CostParams } from "@muatcerdas/shared";
+import { defaultCostParams, type CostParams } from "@kppulse/shared";
 import { computeFinanceKpis, financeScenarios } from "../services/finance";
 
 describe("computeFinanceKpis (LOCK sanity §8)", () => {

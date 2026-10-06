@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import { formatNumber, formatTon } from "@muatcerdas/shared";
+import { formatNumber, formatTon } from "@kppulse/shared";
 import { useInventory, useImport } from "../api/data";
 import { downloadCsv } from "../lib/export";
 import { PageHeader, Card, Stat, Badge, Loading, ErrorState, InfoTip } from "../components/ui";

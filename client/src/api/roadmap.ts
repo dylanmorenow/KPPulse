@@ -1,7 +1,7 @@
 // Hook Modul D + F3 — peta jalan LiDAR (prototipe). GET (driver+admin) ·
 // POST /recompute (admin): turunkan conditionScore dari bahaya LiDAR (bukan input manual).
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import type { HazardType } from "@muatcerdas/shared";
+import type { HazardType } from "@kppulse/shared";
 import { apiGet, apiSend } from "./client";
 
 export interface RoadMapSegment {
